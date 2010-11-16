@@ -1,4 +1,6 @@
 
+# user controller
+
 class UserController < ApplicationController
   def signin
     @callbackUrl = params[:callback_url]
