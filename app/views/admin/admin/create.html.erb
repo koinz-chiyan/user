@@ -1,0 +1,23 @@
+<div class="create">
+	<fieldset>
+		<legend>New Account</legend>
+		<% form_for :admin, :url => {:action => :create} do |f| %>
+		  <%= f.error_messages %>
+			<p>
+				<%= f.label :email %>
+				<%= f.text_field :email %>
+			</p>
+			<p>
+				<%= f.label :password %>
+				<%= f.password_field :password %>
+			</p>
+			<p>
+				<%= f.label "Confirm Password" %>
+				<%= f.password_field :password_confirmation %>
+			</p>
+			<p>
+				<%= f.submit "Create" %>
+			</p>
+		<% end %>
+	</fieldset>
+</div>

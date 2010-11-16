@@ -1,0 +1,10 @@
+<div class="delete">
+	<% form_for(:level, :url => {:action => :destroy, :id => @client.id}) do |f| %>
+	  <%= f.error_messages %>
+	  <p>Do you want to delete <%= @client.name %> ?</p>
+	  <p>
+		<%= f.submit 'Yes' %>
+		<%= f.submit 'No' %>
+		</p>
+	<%end%>
+</div>

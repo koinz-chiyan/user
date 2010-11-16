@@ -1,0 +1,10 @@
+<div class="header">
+  <table border="0" width="100%">
+    <tr>
+	  <td bgcolor=<%= controller_name == "static_file" ? "white" : "gray" %> align="left" width="10%"> <%= link_to "Clients", :controller => "client", :action =>"index"  %> </td>
+	
+	  <td bgcolor="gray" align="right" width="30%"> <%= @admin? @admin.email : ""%> | 
+	                                                <%= link_to "Logout", :controller => "admin", :action =>"logout"  %> </td>
+	</tr>
+  </table>
+</div>

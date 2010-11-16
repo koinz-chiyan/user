@@ -1,0 +1,25 @@
+<h1>List of Clients</h1>
+
+<b><i>
+<%= link_to 'Add New Client', :action => :new %><br />
+</i></b>
+<br />
+
+<table>
+  <tr>
+    <th align="left" width="10%">Name</th>
+    <th align="left" width="10%">Client ID</th>
+    <th align="left" width="10%">Client Secret</th>
+  </tr>
+
+<% @clients.each do |client| %>
+  <tr>
+    <td align="left" width="10%"><%= link_to client.name, :action => :edit, :id => client.id %></td>
+	<td align="left" width="10%"><%=h client.client_id %></td>
+	<td align="left" width="10%"><%=h client.client_secret %></td>
+    <td align="center"><%= link_to 'Delete', :action => :destroy, :id => client.id %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

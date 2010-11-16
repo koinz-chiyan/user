@@ -1,0 +1,2 @@
+module Admin::ClientHelper
+end

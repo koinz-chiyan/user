@@ -1,0 +1,20 @@
+
+<div class="login">
+	<fieldset>
+		<legend>Please Log In</legend>
+		<% form_for :user, :url => {:action => :authenticate} do |f|%>
+			<p>
+				<%= f.label :email %>
+				<%= f.text_field :email %>
+			</p>
+			
+            <p>
+				<%= f.label "Password:"%>
+				<%= f.text_field :password%>
+			</p>
+			<p>
+				<%= f.submit "Sign In" %>
+			</p>
+		<% end %>
+	</fieldset>
+</div>

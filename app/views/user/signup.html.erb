@@ -1,0 +1,33 @@
+<h1>Sign Up with KoinzMedia</h1>
+
+<div class="create">
+	<fieldset>
+		<legend>New Account</legend>
+		<% form_for :user, :url => {:action => :create} do |f| %>
+		  <%= f.error_messages %>
+			<p>
+				<%= f.label :email %>
+				<%= f.text_field :email %>
+			</p>
+			<p>
+				<%= f.label :password %>
+				<%= f.password_field :password %>
+			</p>
+			<p>
+				<%= f.label "Confirm Password" %>
+				<%= f.password_field :password_confirmation %>
+			</p>
+			<p>
+				<%= f.label "First Name" %>
+				<%= f.text_field:first_name%>
+			</p>
+			<p>
+				<%= f.label "Last Name" %>
+				<%= f.text_field:last_name%>
+			</p>
+			<p>
+				<%= f.submit "Create" %>
+			</p>
+		<% end %>
+	</fieldset>
+</div>
