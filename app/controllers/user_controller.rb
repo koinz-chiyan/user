@@ -8,15 +8,12 @@ class UserController < ApplicationController
 
   def authenticate
     us = EndUser.authenticate(params[:user][:email], params[:user][:password])
-    print "===========\n"
-    redirectUrl = params[:user][:callback_url] + "/#{us.user_email}/#{us.auth_token}"
-    print redirectUrl
     if (us) 
       # redirect_to "http://www.google.com?auth_token=#{us.auth_token}"
-      print "==========\n redirecting good"
+      redirectUrl = params[:user][:callback_url] + "/#{us.user_email}/#{us.auth_token}"
       redirect_to redirectUrl
     else
-      redirect_to :action => :signin
+      redirect_to :action => :signin, :callback_url => params[:user][:callback_url]
     end
   end
 
