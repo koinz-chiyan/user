@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101030000000) do
+ActiveRecord::Schema.define(:version => 20101130000000) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",           :null => false
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20101030000000) do
     t.datetime "last_logged_in",                     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email_hash"
   end
 
   add_index "end_users", ["email"], :name => "index_end_users_on_email", :unique => true

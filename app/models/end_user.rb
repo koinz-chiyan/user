@@ -3,15 +3,18 @@ require 'digest/md5'
 class EndUser < ActiveRecord::Base
   def self.create(data)
     data[:salt] = self.getSalt
-    print data
     data[:hashed_password] = Digest::MD5.hexdigest(data.delete(:password) + data[:salt])
     data[:last_logged_in] = DateTime.now
-    print data
+    data[:email_hash] = Digest::MD5.hexdigest(data[:email])
     super(data)
   end
 
   def self.authenticate(email, pwd)
     user = self.find_by_email(email)
+    if (user.isNil?) 
+      return nil
+    end
+
     hashed_pwd = Digest::MD5.hexdigest(pwd + user.salt)
     if (hashed_pwd == user.hashed_password)
       user.createAuthSession 

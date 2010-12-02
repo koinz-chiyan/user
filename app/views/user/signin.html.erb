@@ -4,6 +4,9 @@
 		<legend>Please Log In</legend>
 		<% form_for :user, :url => {:action => :authenticate} do |f|%>
 			<p>
+                <%= f.hidden_field :callback_url, {:value => @callback_url}%>
+			</p>
+			<p>
 				<%= f.label :email %>
 				<%= f.text_field :email %>
 			</p>

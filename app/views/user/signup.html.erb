@@ -4,7 +4,9 @@
 	<fieldset>
 		<legend>New Account</legend>
 		<% form_for :user, :url => {:action => :create} do |f| %>
-		  <%= f.error_messages %>
+			<p>
+                <%= f.hidden_field :callback_url, {:value => @callback_url}%>
+			</p>
 			<p>
 				<%= f.label :email %>
 				<%= f.text_field :email %>

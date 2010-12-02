@@ -3,19 +3,21 @@
 
 class UserController < ApplicationController
   def signin
-    @callbackUrl = params[:callback_url]
+    @callback_url = params[:callback_url]
   end
 
   def authenticate
     us = EndUser.authenticate(params[:user][:email], params[:user][:password])
     if (us) 
-      redirect_to "http://www.google.com?auth_token=#{us.auth_token}"
+      # redirect_to "http://www.google.com?auth_token=#{us.auth_token}"
+      redirect_to params[:user][:callback_url] + "?auth_token=#{us.auth_token}"
     else
       redirect_to :action => :signin
     end
   end
 
   def signup
+    @callback_url = params[:callback_url]
     endUser = EndUser.new
 
     respond_to do |format|
@@ -34,7 +36,7 @@ class UserController < ApplicationController
       )
       if endUser
         flash[:notice] = 'User account was successfully created.'
-        redirect_to :action => :signin
+        redirect_to :action => :signin, :callback_url => params[:user][:callback_url]
       end
     end
   end
