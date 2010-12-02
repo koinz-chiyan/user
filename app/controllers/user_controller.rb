@@ -8,9 +8,13 @@ class UserController < ApplicationController
 
   def authenticate
     us = EndUser.authenticate(params[:user][:email], params[:user][:password])
+    print "===========\n"
+    redirectUrl = params[:user][:callback_url] + "/#{us.user_email}/#{us.auth_token}"
+    print redirectUrl
     if (us) 
       # redirect_to "http://www.google.com?auth_token=#{us.auth_token}"
-      redirect_to params[:user][:callback_url] + "?auth_token=#{us.auth_token}"
+      print "==========\n redirecting good"
+      redirect_to redirectUrl
     else
       redirect_to :action => :signin
     end
@@ -42,7 +46,10 @@ class UserController < ApplicationController
   end
 
   def authSession
-    if (EndUserSession.authenticate(params[:email], params[:auth_token]))
+    cs = Client.authenticate(params[:client_id], params[:client_secret])
+    if (cs.nil?)
+      render :inline => {:status => "authFailure"}
+    elsif (EndUserSession.authenticate(params[:email], params[:auth_token]))
       render :inline => {:status => "ok", :data => {:status => "success"}}.to_json
     else
       render :inline => {:status => "ok", :data => {:status => "failure"}}.to_json

@@ -3,7 +3,7 @@ class EndUserSession < ActiveRecord::Base
   def self.create(data)
     user = data.delete(:user)
     super({
-            :user_email => user.email,
+            :user_email => user.email_hash,
             :auth_token => user.generateAuthToken,
             :expiration => Time.now + 30 * 60
           })

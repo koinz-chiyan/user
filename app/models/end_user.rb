@@ -11,7 +11,7 @@ class EndUser < ActiveRecord::Base
 
   def self.authenticate(email, pwd)
     user = self.find_by_email(email)
-    if (user.isNil?) 
+    if (user.nil?) 
       return nil
     end
 
