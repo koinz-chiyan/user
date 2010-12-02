@@ -10,8 +10,8 @@ class EndUserSession < ActiveRecord::Base
   end
   
   def self.authenticate(email, token)
-    currentTime = Time.now
-    uss = self.where("user_email = '#{email}' and auth_token = '#{token}' and expiration > '#{currentTime}'")
+    currentTime = Time.now.utc
+    uss = self.where(["user_email = ? and auth_token = ? and expiration > ?",email,token,currentTime])
     uss.length > 0
   end
 end
