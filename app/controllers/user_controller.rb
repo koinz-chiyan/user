@@ -52,4 +52,18 @@ class UserController < ApplicationController
       render :inline => {:status => "ok", :data => {:status => "failure"}}.to_json
     end
   end
+
+  def fetchBasicInfo
+    cs = Client.authenticate(params[:client_id], params[:client_secret])
+    if (cs.nil?)
+      render :inline => {:status => "authFailure"}.to_json
+    else
+      us = EndUser.where("email_hash = '#{params[:email]}'")
+      if (us.empty?)
+        render :inline => {:status => "userNotFound"}.to_json
+      else
+        render :inline => {:status => "ok", :data => us[0]}.to_json
+      end
+    end
+  end
 end

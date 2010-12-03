@@ -46,16 +46,13 @@ User::Application.routes.draw do
     match "peerAuthenticate" => "auth#peerAuthenticate"
   end
   
-  namespace :auth2 do
-    match "auth" => "authorize"
-  end
-
   namespace :user do
     match "signin" => "user#signin"
     match "signup" => "user#signup"
     match "create" => "user#create"
     match "authenticate" => "user#authenticate"
     match "authSession" => "user#authSession"
+    match "fetchBasicInfo" => "user#fetchBasicInfo"
   end
 
   namespace :admin do
