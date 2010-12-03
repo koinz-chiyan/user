@@ -45,11 +45,11 @@ class UserController < ApplicationController
   def authSession
     cs = Client.authenticate(params[:client_id], params[:client_secret])
     if (cs.nil?)
-      render :inline => {:status => "authFailure"}
+      render :json => {:status => "authFailure"}
     elsif (EndUserSession.authenticate(params[:email], params[:auth_token]))
-      render :inline => {:status => "ok", :data => {:status => "success"}}.to_json
+      render :json => {:status => "ok", :data => {:status => "success"}}.to_json
     else
-      render :inline => {:status => "ok", :data => {:status => "failure"}}.to_json
+      render :json => {:status => "ok", :data => {:status => "failure"}}.to_json
     end
   end
 
